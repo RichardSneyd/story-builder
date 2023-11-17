@@ -1,9 +1,9 @@
 import { IPosition } from "./IPosition";
 
 type IEntity = {
-    getPosition(): IPosition;
-    getName(): string;
-    setName(name: string): void;
+    get position(): IPosition;
+    get name(): string;
+    set name(name: string);
 }
 
 export default IEntity;

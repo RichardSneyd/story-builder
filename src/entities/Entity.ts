@@ -2,24 +2,24 @@ import IEntity from "./IEntity";
 import { IPosition } from "./IPosition";
 
 class Entity implements IEntity {
-    private name: string;
-    private position: IPosition;
+    private _name: string;
+    private _position: IPosition;
 
     constructor (name: string, position: IPosition) {
-        this.name = name;
-        this.position = position;
+        this._name = name;
+        this._position = position;
     }
 
-    getPosition(): IPosition {
-        return this.position;
+    get position(): IPosition {
+        return this._position;
     }
     
-    getName(): string {
-        return this.name;
+    get name(): string {
+        return this._name;
     }
 
-    setName(name: string): void {
-        this.name = name;
+    set name(name: string) {
+        this._name = name;
     }
 
 }

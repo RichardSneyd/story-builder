@@ -2,10 +2,10 @@ type HorizontalPosition = "left" | "center" | "right";
 type VerticalPosition = "top" | "center" | "bottom";
 
 type IPosition = {
-    getHorizontal() : HorizontalPosition;
-    getVertical() : VerticalPosition;
-    setHorizontal(horizontal: HorizontalPosition): void;
-    setVertical(vertical: VerticalPosition): void;
+    get horizontal() : HorizontalPosition;
+    get vertical() : VerticalPosition;
+    set horizontal(horizontal: HorizontalPosition);
+    set vertical(vertical: VerticalPosition);
 }
 
 export type {IPosition, HorizontalPosition, VerticalPosition}

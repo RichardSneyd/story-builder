@@ -1,27 +1,27 @@
 import { IPosition, HorizontalPosition, VerticalPosition } from "./IPosition";
 
 class Position implements IPosition {
-    private horizontal: HorizontalPosition;
-    private vertical: VerticalPosition;
+    private _horizontal: HorizontalPosition;
+    private _vertical: VerticalPosition;
 
     constructor(horizontal: HorizontalPosition, vertical: VerticalPosition){
-        [this.horizontal, this.vertical] = [horizontal, vertical];
+        [this._horizontal, this._vertical] = [horizontal, vertical];
     }
 
-    setHorizontal(horizontal: HorizontalPosition): void {
-        this.horizontal = horizontal;
+    set horizontal(horizontal: HorizontalPosition) {
+        this._horizontal = horizontal;
     }
 
-    setVertical(vertical: VerticalPosition): void {
-        this.vertical = vertical;
+    set vertical(vertical: VerticalPosition) {
+        this._vertical = vertical;
     }
 
-    getHorizontal(): HorizontalPosition {
-        return this.horizontal;
+    get horizontal(): HorizontalPosition {
+        return this._horizontal;
     }
     
-    getVertical(): VerticalPosition {
-        return this.vertical;
+    get vertical(): VerticalPosition {
+        return this._vertical;
     }
 
 }

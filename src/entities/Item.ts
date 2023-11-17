@@ -5,13 +5,21 @@ import { IPosition } from "./IPosition";
 
 
 class Item extends Entity {
-    private category: ItemCategory;
-    private material: Material;
+    private _category: ItemCategory;
+    private _material: Material;
 
     constructor({name, position, category, material}:{name: string, position: IPosition, category: ItemCategory, material: Material}) {
         super(name, position)
-        this.category = category;
-        this.material = material;
+        this._category = category;
+        this._material = material;
+    }
+
+    get category(): ItemCategory {
+        return this._category;
+    }
+
+    get material(): Material {
+        return this._material;
     }
 }
 
