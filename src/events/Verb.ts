@@ -8,6 +8,7 @@ interface IVerb {
     get base(): string;
     get infinitive(): string;
     get presentParticiple(): string;
+    conjugatePresent(person: Person, number: NumberOf): string;
     get pastTense(): string;
     get pastParticiple(): string;
     get futureTense(): string;

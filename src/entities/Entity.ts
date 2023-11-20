@@ -1,6 +1,7 @@
 import IEntity from "./IEntity";
 import { IPosition } from "./IPosition";
 
+
 class Entity implements IEntity {
     private _name: string;
     private _position: IPosition;

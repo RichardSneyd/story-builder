@@ -4,20 +4,29 @@ import Item from "./Item";
 import Profile from "./Profile";
 import Species, { ISpecies } from "./Species";
 
-type Mood = "very sad" | "sad" | "happy" | "very happy" | "excited" | "scared" | "confused" | "bored" | "curious" | "tired" | "sorry" | "angry" | "lonely" | null;
+type ActorState = "very sad" | "sad" | "happy" | "very happy" | "excited" | "scared" | "confused" | "bored" | "curious" | "tired" | "sorry" | "angry" | "lonely";
 type Gender = "male" | "female" | null;
 
-class Actor extends Entity {
+interface IActor {
+    get species(): ISpecies;
+    get state(): ActorState[];
+    get gender(): Gender;
+    get age(): number;
+    get profile(): Profile;
+    get items(): Item[];
+}
+
+class Actor extends Entity implements IActor {
     private _species: ISpecies;
-    private _mood: Mood;
+    private _state: ActorState[];
     private _gender: Gender;
     private _age: number;
     private _profile: Profile;
     private _items: Item[];
 
-    constructor({name, position, mood = "happy", gender = "male", age = 9, profile = new Profile({}), items = [], species = new Species("dog")}:{name: string, position: IPosition, mood: Mood, species: ISpecies, gender: Gender, age: number, profile: Profile, items: Item[]}) {
+    constructor({name, position, state = ["happy"], gender = "male", age = 9, profile = new Profile({}), items = [], species = new Species("dog")}:{name: string, position: IPosition, state?: ActorState[], species: ISpecies, gender?: Gender, age?: number, profile?: Profile, items?: Item[]}) {
         super(name, position);
-        this._mood = mood;
+        this._state = state;
         this._species = species;
         this._gender = gender;
         this._age = age;
@@ -29,8 +38,8 @@ class Actor extends Entity {
         return this._species;
     }
 
-    get mood(): Mood {
-        return this._mood;
+    get state(): ActorState[] {
+        return this._state;
     }
 
     get gender(): Gender {
@@ -51,4 +60,4 @@ class Actor extends Entity {
   }
 
   export default Actor;
-  export type {Actor, Mood, Gender}
+  export type {IActor, Actor, ActorState, Gender}

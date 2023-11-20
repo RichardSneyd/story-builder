@@ -15,6 +15,10 @@ interface ITransitiveAction extends IAction {
     get object(): SubjectObject;
 }
 
+interface IComplexTransitiveAction extends ITransitiveAction {
+    get prepositionalObject(): SubjectObject;
+}
+
 /**
  * @description  an intransitive action (actual happening) involving a verb and a subject
  */
@@ -62,5 +66,21 @@ class TransitiveAction implements ITransitiveAction {
     
 }
 
+/**
+ * @description a complex transitive action (actual happening) involving a verb, a subject, an object, and a prepositional object
+ */
+class ComplexTransitiveAction extends TransitiveAction implements IComplexTransitiveAction {
+    private _prepositionalObject: SubjectObject;
 
-export type {IAction, ITransitiveAction, IntransitiveAction, TransitiveAction, SubjectObject}
+    constructor(baseAction: IntransitiveAction, object: SubjectObject, prepositionalObject: SubjectObject) {
+        super(baseAction, object);
+        this._prepositionalObject = prepositionalObject;
+    }
+
+    get prepositionalObject(): SubjectObject {
+        return this._prepositionalObject;
+    }
+}
+
+
+export type {IAction, ITransitiveAction, IComplexTransitiveAction, IntransitiveAction, TransitiveAction, ComplexTransitiveAction, SubjectObject}
