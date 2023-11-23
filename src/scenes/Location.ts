@@ -1,12 +1,12 @@
 import { IActor } from "../entities/Actor";
-import Item from "../entities/Item";
+import { IItem } from "../entities/Item";
 
 class Location {
     private _name: string;
-    private _associatedItems: Item[];
+    private _associatedItems: IItem[];
     private _associatedActors: IActor[];
 
-    constructor({name, associatedActors, associatedItems}:{name: string, associatedActors: IActor[], associatedItems: Item[]}){
+    constructor({name, associatedActors, associatedItems}:{name: string, associatedActors: IActor[], associatedItems: IItem[]}){
         this._name = name;
         this._associatedActors = associatedActors;
         this._associatedItems = associatedItems;
@@ -14,7 +14,7 @@ class Location {
 
     get name(): string { return this._name;}
     get associatedActors(): IActor[] { return this._associatedActors;}
-    get associatedItems(): Item[] { return this._associatedItems;}
+    get associatedItems(): IItem[] { return this._associatedItems;}
 }
 
 export default Location;
