@@ -9,6 +9,9 @@ interface IItem {
     get category(): ItemCategory;
     get material(): Material;
     get state(): ItemState[];
+    get name(): string;
+    set name(name: string);
+    get position(): IPosition;
 }
 
 class Item extends Entity implements IItem {
