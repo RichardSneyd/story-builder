@@ -2,7 +2,15 @@ import { IItem } from "./Item";
 
 type Trait = "confident" | "outgoing" | "chatty" | "quiet" | "playful" | "serious" | "cheeky" | "nice" | "sweet" | "nasty" | "strong" | "brave" | "smart" | "stupid";
 
-class Profile {
+interface IProfile {
+    traits: Set<Trait>;
+    likedItems: Set<IItem>;
+    dislikedItems: Set<IItem>;
+    likedTraits: Set<Trait>;
+    dislikedTraits: Set<Trait>;
+}
+
+class Profile implements IProfile {
     private _traits: Set<Trait>;
     private _likedItems: Set<IItem>;
     private _dislikedItems: Set<IItem>;
@@ -39,4 +47,4 @@ class Profile {
 }
 
 export default Profile;
-export type {Trait}
+export type {Trait, IProfile}

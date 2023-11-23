@@ -1,10 +1,8 @@
-import Item from "../entities/Item";
-import Actor from"../entities/Actor";
+import  { IItem } from "../entities/Item";
+import { IActor } from"../entities/Actor";
 import { IVerb } from "./Verb";
 
-type SubjectObject = Actor | Item | null;
-
-
+type SubjectObject = IActor | IItem | null;
 
 interface IAction {
     get verb(): IVerb;
@@ -82,5 +80,5 @@ class ComplexTransitiveAction extends TransitiveAction implements IComplexTransi
     }
 }
 
-
-export type {IAction, ITransitiveAction, IComplexTransitiveAction, IntransitiveAction, TransitiveAction, ComplexTransitiveAction, SubjectObject}
+export type {IAction, ITransitiveAction, IComplexTransitiveAction, SubjectObject}
+export {IntransitiveAction, TransitiveAction, ComplexTransitiveAction}

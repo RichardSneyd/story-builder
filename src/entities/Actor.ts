@@ -1,7 +1,7 @@
 import Entity from "./Entity";
 import { IPosition } from "./IPosition";
-import Item from "./Item";
-import Profile from "./Profile";
+import Item, { IItem } from "./Item";
+import Profile, { IProfile } from "./Profile";
 import Species, { ISpecies } from "./Species";
 
 type ActorState = "very sad" | "sad" | "happy" | "very happy" | "excited" | "scared" | "confused" | "bored" | "curious" | "tired" | "sorry" | "angry" | "lonely";
@@ -12,8 +12,8 @@ interface IActor {
     get state(): ActorState[];
     get gender(): Gender;
     get age(): number;
-    get profile(): Profile;
-    get items(): Item[];
+    get profile(): IProfile;
+    get items(): IItem[];
 }
 
 class Actor extends Entity implements IActor {
@@ -21,10 +21,10 @@ class Actor extends Entity implements IActor {
     private _state: ActorState[];
     private _gender: Gender;
     private _age: number;
-    private _profile: Profile;
+    private _profile: IProfile;
     private _items: Item[];
 
-    constructor({name, position, state = ["happy"], gender = "male", age = 9, profile = new Profile({}), items = [], species = new Species("dog")}:{name: string, position: IPosition, state?: ActorState[], species: ISpecies, gender?: Gender, age?: number, profile?: Profile, items?: Item[]}) {
+    constructor({name, position, state = ["happy"], gender = "male", age = 9, profile = new Profile({}), items = [], species = new Species("dog")}:{name: string, position: IPosition, state?: ActorState[], species: ISpecies, gender?: Gender, age?: number, profile?: IProfile, items?: Item[]}) {
         super(name, position);
         this._state = state;
         this._species = species;
@@ -50,7 +50,7 @@ class Actor extends Entity implements IActor {
         return this._age;
     }
 
-    get profile(): Profile {
+    get profile(): IProfile {
         return this._profile;
     }
 

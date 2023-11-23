@@ -73,5 +73,5 @@ class Verb implements IVerb {
     }
 
 }
-
-export type {IVerb, Verb}
+export default Verb;
+export type {IVerb, Person, NumberOf}
