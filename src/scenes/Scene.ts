@@ -1,6 +1,7 @@
 import { IActor } from "../entities/Actor";
 import Item from "../entities/Item";
 import { IEvent } from "../events/Event";
+import Location from "./Location";
 
 interface IScene {
     get location(): Location;

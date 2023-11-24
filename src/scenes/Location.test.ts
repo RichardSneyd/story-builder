@@ -1,6 +1,6 @@
 import Location from './Location';
 import { ActorState, Gender, IActor } from '../entities/Actor';
-import Item, { IItem, ItemState } from '../entities/Item';
+import { IItem, ItemState } from '../entities/Item';
 import { ISpecies } from '../entities/Species';
 import { IProfile, Trait } from '../entities/Profile';
 import ItemCategory from '../entities/ItemCategory';
