@@ -1,11 +1,12 @@
 import { ActorEffect } from './Effect';
-import { IActor, ActorState, Gender } from '../entities/Actor';
+import { ActorState, Gender } from '../entities/Actor';
+import { IActor } from "../entities/IActor";
 import { ItemEffect } from './Effect';
-import { IItem, ItemState } from '../entities/Item';
-import { ISpecies } from '../entities/Species';
-import { IProfile, Trait } from '../entities/Profile';
+import { IItem, ItemState } from "../entities/IItem";
+import { ISpecies } from "../entities/ISpecies";
+import { IProfile, Trait } from "../entities/IProfile";
 import ItemCategory from '../entities/ItemCategory';
-import { IMaterial } from '../entities/Material';
+import { IMaterial } from "../entities/IMaterial";
 import { IPosition } from '../entities/IPosition';
 
 

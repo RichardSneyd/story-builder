@@ -1,5 +1,5 @@
-import { IActor } from "../entities/Actor";
-import { IItem } from "../entities/Item";
+import { IActor } from "../entities/IActor";
+import { IItem } from "../entities/IItem";
 
 class Location {
     private _name: string;

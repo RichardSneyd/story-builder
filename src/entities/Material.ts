@@ -1,13 +1,4 @@
-type Hardness = "very hard" | "hard" | "soft" | "very soft" | "squishy" | null;
-type Wetness = "very wet" | "wet" | "dry" | "very dry" | null;
-type Temperature = "very hot" | "hot" | "cold" | "very cold" | "warm" | null;
-
-interface IMaterial {
-    get name(): string
-    get hardness(): Hardness,
-    get wetness(): Wetness,
-    get temperature(): Temperature
-}
+import { IMaterial, Hardness, Wetness, Temperature } from "./IMaterial";
 
 class Material implements IMaterial {
     private _name: string;

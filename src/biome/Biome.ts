@@ -1,12 +1,7 @@
-import { IActor } from "../entities/Actor";
-import { IItem } from "../entities/Item";
+import { IActor } from "../entities/IActor";
+import { IItem } from "../entities/IItem";
 import Location from "../scenes/Location";
-
-interface IBiome {
-    get actors(): Set<IActor>;
-    get items(): Set<IItem>;
-    get locations(): Set<Location>;
-}
+import { IBiome } from "./IBiome";
 
 class Biome implements IBiome {
     private _locations: Set<Location>;
@@ -29,4 +24,3 @@ class Biome implements IBiome {
 }
 
 export default Biome;
-export type {IBiome}

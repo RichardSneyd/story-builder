@@ -1,9 +1,10 @@
 import Actor from './Actor';
 import Profile from './Profile';
 import Species from './Species';
-import Item, { IItem, ItemState } from './Item';
+import Item from './Item';
+import { IItem, ItemState } from "./IItem";
 import ItemCategory from './ItemCategory';
-import { IMaterial } from './Material';
+import { IMaterial } from "./IMaterial";
 
 
 // Mock data for Item constructor

@@ -1,4 +1,5 @@
-import Verb, { NumberOf, Person } from './Verb';
+import Verb from './Verb';
+import { NumberOf, Person } from "./IVerb";
 
 describe('Verb', () => {
   const base = 'walk';

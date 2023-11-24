@@ -1,5 +1,6 @@
-import { IActor, ActorState } from "../entities/Actor";
-import { IItem, ItemState } from "../entities/Item";
+import { ActorState } from "../entities/Actor";
+import { IActor } from "../entities/IActor";
+import { IItem, ItemState } from "../entities/IItem";
 
 interface IEffect {
     get subject(): IActor | IItem;

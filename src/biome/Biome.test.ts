@@ -5,7 +5,8 @@ import Item from '../entities/Item'; // Assuming Item is a concrete class
 import Species from '../entities/Species';
 import Position from '../entities/Position';
 import ItemCategory from '../entities/ItemCategory';
-import Material, { IMaterial } from '../entities/Material';
+import Material from '../entities/Material';
+import { IMaterial } from "../entities/IMaterial";
 
 describe('Biome', () => {
   // Create mock Locations with Actors and Items

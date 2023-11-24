@@ -1,4 +1,6 @@
-import { IAction, IComplexTransitiveAction, ITransitiveAction } from "./Action";
+import { IComplexTransitiveAction } from "./IComplexTransitiveAction";
+import { ITransitiveAction } from "./ITransitiveAction";
+import { IAction } from "./IAction";
 import { IActorEffect, IEffect, IItemEffect } from "./Effect";
 
 type AnyAction = IAction | ITransitiveAction | IComplexTransitiveAction;

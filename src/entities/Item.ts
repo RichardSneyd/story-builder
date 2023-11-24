@@ -1,18 +1,8 @@
 import Entity from "./Entity";
 import ItemCategory from "./ItemCategory";
-import { IMaterial } from "./Material";
+import { IMaterial } from "./IMaterial";
 import { IPosition } from "./IPosition";
-
-type ItemState = "clean" | "dirthy" | "broken" | "fixed";
-
-interface IItem {
-    get category(): ItemCategory;
-    get material(): IMaterial;
-    get state(): ItemState[];
-    get name(): string;
-    set name(name: string);
-    get position(): IPosition;
-}
+import { IItem, ItemState } from "./IItem";
 
 class Item extends Entity implements IItem {
     private _category: ItemCategory;

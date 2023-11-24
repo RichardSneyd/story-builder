@@ -1,12 +1,15 @@
-import { IntransitiveAction, TransitiveAction, ComplexTransitiveAction } from './Action';
-import { ActorState, Gender, IActor } from '../entities/Actor';
-import {IItem, ItemState } from '../entities/Item';
-import { IVerb } from './Verb';
-import { ISpecies } from '../entities/Species';
-import { IProfile, Trait } from '../entities/Profile';
+import ComplexTransitiveAction from "./ComplexTransitiveAction";
+import { ActorState, Gender } from '../entities/Actor';
+import { IActor } from "../entities/IActor";
+import { IItem, ItemState } from "../entities/IItem";
+import { IVerb } from "./IVerb";
+import { ISpecies } from "../entities/ISpecies";
+import { IProfile, Trait } from "../entities/IProfile";
 import ItemCategory from '../entities/ItemCategory';
-import { IMaterial } from '../entities/Material';
+import { IMaterial } from "../entities/IMaterial";
 import { IPosition } from '../entities/IPosition';
+import IntransitiveAction from "./IntransitiveAction";
+import TransitiveAction from "./TransitiveAction";
 
 
 // Mock implementation for IVerb

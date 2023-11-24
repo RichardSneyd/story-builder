@@ -1,5 +1,5 @@
-import { IActor } from "../entities/Actor";
-import { IScene } from "../scenes/Scene";
+import { IActor } from "../entities/IActor";
+import { IScene } from "../scenes/IScene";
 
 interface IStory {
     get scenes(): IScene[];

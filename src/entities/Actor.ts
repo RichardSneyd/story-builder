@@ -1,20 +1,14 @@
 import Entity from "./Entity";
+import { IActor } from "./IActor";
 import { IPosition } from "./IPosition";
-import Item, { IItem } from "./Item";
-import Profile, { IProfile } from "./Profile";
-import Species, { ISpecies } from "./Species";
+import Item from "./Item";
+import Profile from "./Profile";
+import { IProfile } from "./IProfile";
+import Species from "./Species";
+import { ISpecies } from "./ISpecies";
 
 type ActorState = "very sad" | "sad" | "happy" | "very happy" | "excited" | "scared" | "confused" | "bored" | "curious" | "tired" | "sorry" | "angry" | "lonely";
 type Gender = "male" | "female" | null;
-
-interface IActor {
-    get species(): ISpecies;
-    get state(): ActorState[];
-    get gender(): Gender;
-    get age(): number;
-    get profile(): IProfile;
-    get items(): IItem[];
-}
 
 class Actor extends Entity implements IActor {
     private _species: ISpecies;

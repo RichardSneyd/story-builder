@@ -1,18 +1,4 @@
-type Person = 'first' | 'second' | 'third';
-type NumberOf = 'singular' | 'plural';
-
-/**
- * @description a verb (type of action), with the various tenses
- */
-interface IVerb {
-    get base(): string;
-    get infinitive(): string;
-    get presentParticiple(): string;
-    conjugatePresent(person: Person, number: NumberOf): string;
-    get pastTense(): string;
-    get pastParticiple(): string;
-    get futureTense(): string;
-}
+import { IVerb, Person, NumberOf } from "./IVerb";
 
 class Verb implements IVerb {
     private _base: string;
@@ -71,7 +57,6 @@ class Verb implements IVerb {
         // For all other persons and numbers, the base form is used
         return this._base;
     }
-
 }
+
 export default Verb;
-export type {IVerb, Person, NumberOf}

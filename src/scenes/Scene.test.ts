@@ -1,6 +1,6 @@
 import Scene from './Scene';
 import { IEvent } from '../events/Event';
-import { IActor } from '../entities/Actor';
+import { IActor } from "../entities/IActor";
 import Item from '../entities/Item';
 import Location from './Location';
 

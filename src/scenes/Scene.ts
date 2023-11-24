@@ -1,14 +1,8 @@
-import { IActor } from "../entities/Actor";
+import { IActor } from "../entities/IActor";
 import Item from "../entities/Item";
 import { IEvent } from "../events/Event";
+import { IScene } from "./IScene";
 import Location from "./Location";
-
-interface IScene {
-    get location(): Location;
-    get events(): IEvent[];
-    get actors(): IActor[];
-    get items(): Item[];
-}
 
 class Scene implements IScene {
     private _events: IEvent[];
@@ -41,4 +35,3 @@ class Scene implements IScene {
 }
 
 export default Scene;
-export type {IScene, Scene}

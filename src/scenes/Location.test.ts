@@ -1,10 +1,11 @@
 import Location from './Location';
-import { ActorState, Gender, IActor } from '../entities/Actor';
-import { IItem, ItemState } from '../entities/Item';
-import { ISpecies } from '../entities/Species';
-import { IProfile, Trait } from '../entities/Profile';
+import { ActorState, Gender } from '../entities/Actor';
+import { IActor } from "../entities/IActor";
+import { IItem, ItemState } from "../entities/IItem";
+import { ISpecies } from "../entities/ISpecies";
+import { IProfile, Trait } from "../entities/IProfile";
 import ItemCategory from '../entities/ItemCategory';
-import { IMaterial } from '../entities/Material';
+import { IMaterial } from "../entities/IMaterial";
 import { IPosition } from '../entities/IPosition';
 
 

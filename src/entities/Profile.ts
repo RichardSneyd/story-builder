@@ -1,14 +1,5 @@
-import { IItem } from "./Item";
-
-type Trait = "confident" | "outgoing" | "chatty" | "quiet" | "playful" | "serious" | "cheeky" | "nice" | "sweet" | "nasty" | "strong" | "brave" | "smart" | "stupid";
-
-interface IProfile {
-    traits: Set<Trait>;
-    likedItems: Set<IItem>;
-    dislikedItems: Set<IItem>;
-    likedTraits: Set<Trait>;
-    dislikedTraits: Set<Trait>;
-}
+import { IItem } from "./IItem";
+import { IProfile, Trait } from "./IProfile";
 
 class Profile implements IProfile {
     private _traits: Set<Trait>;

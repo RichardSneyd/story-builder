@@ -1,4 +1,5 @@
-import Item, { IItem } from './Item';
+import Item from './Item';
+import { IItem } from "./IItem";
 
 describe('Item', () => {
   const mockCategory = { name: 'Toy', pre: 'a' };

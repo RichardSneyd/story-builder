@@ -1,6 +1,8 @@
-import Profile, { Trait } from './Profile';
-import Item, { IItem, ItemState } from './Item';
-import { IMaterial } from './Material';
+import Profile from './Profile';
+import { Trait } from "./IProfile";
+import Item from './Item';
+import { IItem, ItemState } from "./IItem";
+import { IMaterial } from "./IMaterial";
 import ItemCategory from './ItemCategory';
 
 

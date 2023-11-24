@@ -1,7 +1,4 @@
-interface ISpecies {
-    get base(): string;
-    get plural(): string;
-}
+import { ISpecies } from "./ISpecies";
 
 class Species implements ISpecies {
     private _base: string;
