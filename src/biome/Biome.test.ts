@@ -10,15 +10,15 @@ import Material, { IMaterial } from '../entities/Material';
 describe('Biome', () => {
   // Create mock Locations with Actors and Items
   const human = new Species("human");
-//   const dog = new Species("dog");
+  const dog = new Species("dog");
 
   const bottomLeft = new Position("left", "bottom");
   const bottomRight = new Position("right", "bottom");
 
-  const richard = new Actor({name: "Person 1", species: human, position: bottomLeft});
-  const jen = new Actor({name: "Person 2", species: human, position: bottomRight});
-  const dar = new Actor({name: "Person 3", species: human, position: bottomRight});
-  const scar = new Actor({name: "Person 4", species: human, position: bottomRight});
+  const person1 = new Actor({name: "Person 1", species: human, position: bottomLeft});
+  const person2 = new Actor({name: "Person 2", species: human, position: bottomRight});
+  const dog1 = new Actor({name: "Dog 1", species: dog, position: bottomRight});
+  const dog2 = new Actor({name: "Dog 2", species: dog, position: bottomRight});
 
   const toy: ItemCategory = {name: "toy", pre: "a"}; 
   const appliance: ItemCategory = {name: "appliance", pre: "an"}
@@ -28,8 +28,8 @@ describe('Biome', () => {
   const ball = new Item({category: toy, name: "ball", material: plastic});
   const cooker = new Item({name: "cooker", category: appliance, material: plastic})
 
-  const beach = new Location({name: 'the beach', associatedActors: [richard, jen], associatedItems: [ball]});
-  const kitchen = new Location({name: 'the kitchen', associatedActors: [dar, scar], associatedItems: [cooker]});
+  const beach = new Location({name: 'the beach', associatedActors: [person1, person2], associatedItems: [ball]});
+  const kitchen = new Location({name: 'the kitchen', associatedActors: [dog1, dog2], associatedItems: [cooker]});
   const locations = [beach, kitchen];
   
   const biome = new Biome({ locations });
