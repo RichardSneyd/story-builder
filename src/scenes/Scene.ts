@@ -10,7 +10,7 @@ class Scene implements IScene {
     private _location: Location;
     private _items: Item[];
 
-    constructor({events, actors, location, items}: {events: IEvent[], actors: IActor[], location: Location, items: Item[]}) {
+    constructor({events = [], actors = [], location, items = []}: {events?: IEvent[], actors?: IActor[], location: Location, items?: Item[]}) {
         this._events = events;
         this._actors = actors;
         this._items = items;

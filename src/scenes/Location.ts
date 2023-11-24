@@ -6,7 +6,7 @@ class Location {
     private _associatedItems: Set<IItem>;
     private _associatedActors: Set<IActor>;
 
-    constructor({name, associatedActors, associatedItems}:{name: string, associatedActors: IActor[], associatedItems: IItem[]}){
+    constructor({name, associatedActors = [], associatedItems = []}:{name: string, associatedActors?: IActor[], associatedItems?: IItem[]}){
         this._name = name;
         this._associatedActors = new Set(associatedActors);
         this._associatedItems = new Set(associatedItems);

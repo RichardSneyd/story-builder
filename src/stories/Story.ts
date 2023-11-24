@@ -1,10 +1,6 @@
 import { IActor } from "../entities/IActor";
 import { IScene } from "../scenes/IScene";
-
-interface IStory {
-    get scenes(): IScene[];
-    get protagonist(): IActor;
-}
+import { IStory } from "./IStory";
 
 class Story implements IStory {
     private _scenes: IScene[];
