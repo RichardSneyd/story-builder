@@ -5,7 +5,7 @@ import { IVerb } from './Verb';
 import { ISpecies } from '../entities/Species';
 import { IProfile, Trait } from '../entities/Profile';
 import ItemCategory from '../entities/ItemCategory';
-import { Material } from '../entities/Material';
+import { IMaterial } from '../entities/Material';
 import { IPosition } from '../entities/IPosition';
 
 
@@ -39,7 +39,7 @@ const mockVerb: IVerb = {
   // Mock implementation for IItem
   const mockItem: IItem = {
     get category(): ItemCategory { return { name: 'Tool', pre: 'a' }; },
-    get material(): Material { return { name: 'Iron', hardness: 'hard', wetness: 'dry', temperature: 'cold' }; },
+    get material(): IMaterial { return { name: 'Iron', hardness: 'hard', wetness: 'dry', temperature: 'cold' }; },
     get state(): ItemState[] { return ['clean']; },
     get name(): string { return 'Hammer'; },
     set name(newName: string) { newName },

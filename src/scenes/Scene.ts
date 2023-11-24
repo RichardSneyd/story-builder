@@ -12,7 +12,7 @@ interface IScene {
 
 class Scene implements IScene {
     private _events: IEvent[];
-    private _actors: IActor[];
+    private _actors: IActor[]; // order could represent temporal appearance in generated text??
     private _location: Location;
     private _items: Item[];
 

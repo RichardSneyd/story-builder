@@ -1,13 +1,13 @@
 import Entity from "./Entity";
 import ItemCategory from "./ItemCategory";
-import { Material } from "./Material";
+import { IMaterial } from "./Material";
 import { IPosition } from "./IPosition";
 
 type ItemState = "clean" | "dirthy" | "broken" | "fixed";
 
 interface IItem {
     get category(): ItemCategory;
-    get material(): Material;
+    get material(): IMaterial;
     get state(): ItemState[];
     get name(): string;
     set name(name: string);
@@ -16,10 +16,10 @@ interface IItem {
 
 class Item extends Entity implements IItem {
     private _category: ItemCategory;
-    private _material: Material;
+    private _material: IMaterial;
     private _state: ItemState[];
 
-    constructor({name, position = {horizontal: "left", vertical: "bottom"}, category, material, state = []}:{name: string, position?: IPosition, category: ItemCategory, material: Material, state?: ItemState[]}) {
+    constructor({name, position = {horizontal: "left", vertical: "bottom"}, category, material, state = []}:{name: string, position?: IPosition, category: ItemCategory, material: IMaterial, state?: ItemState[]}) {
         super(name, position)
         this._category = category;
         this._material = material;
@@ -34,7 +34,7 @@ class Item extends Entity implements IItem {
         return this._category;
     }
 
-    get material(): Material {
+    get material(): IMaterial {
         return this._material;
     }
 }

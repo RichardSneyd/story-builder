@@ -4,7 +4,7 @@ import { IItem, ItemState } from '../entities/Item';
 import { ISpecies } from '../entities/Species';
 import { IProfile, Trait } from '../entities/Profile';
 import ItemCategory from '../entities/ItemCategory';
-import { Material } from '../entities/Material';
+import { IMaterial } from '../entities/Material';
 import { IPosition } from '../entities/IPosition';
 
 
@@ -27,7 +27,7 @@ import { IPosition } from '../entities/IPosition';
   // Mock implementation for IItem
   const mockItem: IItem = {
     get category(): ItemCategory { return { name: 'Tool', pre: 'a' }; },
-    get material(): Material { return { name: 'Iron', hardness: 'hard', wetness: 'dry', temperature: 'cold' }; },
+    get material(): IMaterial { return { name: 'Iron', hardness: 'hard', wetness: 'dry', temperature: 'cold' }; },
     get state(): ItemState[] { return ['clean']; },
     get name(): string { return 'Hammer'; },
     set name(newName: string) { newName },
@@ -43,8 +43,8 @@ describe('Location', () => {
 
   test('constructor initializes properties correctly', () => {
     expect(location.name).toBe(locationName);
-    expect(location.associatedActors).toEqual(mockActors);
-    expect(location.associatedItems).toEqual(mockItems);
+    expect(location.associatedActors).toEqual(new Set(mockActors));
+    expect(location.associatedItems).toEqual(new Set(mockItems));
   });
 
   test('name getter returns the correct value', () => {
@@ -52,10 +52,10 @@ describe('Location', () => {
   });
 
   test('associatedActors getter returns the correct values', () => {
-    expect(location.associatedActors).toEqual(mockActors);
+    expect(location.associatedActors).toEqual(new Set(mockActors));
   });
 
   test('associatedItems getter returns the correct values', () => {
-    expect(location.associatedItems).toEqual(mockItems);
+    expect(location.associatedItems).toEqual(new Set(mockItems));
   });
 });

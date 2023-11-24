@@ -3,12 +3,12 @@ import Profile from './Profile';
 import Species from './Species';
 import Item, { IItem, ItemState } from './Item';
 import ItemCategory from './ItemCategory';
-import { Material } from './Material';
+import { IMaterial } from './Material';
 
 
 // Mock data for Item constructor
 const mockCategory: ItemCategory = { name: 'Toy', pre: 'a' };
-const mockMaterial: Material = { name: 'Plastic', hardness: 'hard', wetness: 'dry', temperature: 'cold' };
+const mockMaterial: IMaterial = { name: 'Plastic', hardness: 'hard', wetness: 'dry', temperature: 'cold' };
 const mockState: ItemState[] = ['clean'];
 
 // Creating mock items with the above data
