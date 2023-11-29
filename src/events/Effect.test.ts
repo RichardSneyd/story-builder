@@ -1,5 +1,5 @@
 import { ActorEffect } from './Effect';
-import { ActorState, Gender } from '../entities/Actor';
+import { ActorState, Gender } from '../entities/IActor';
 import { IActor } from "../entities/IActor";
 import { ItemEffect } from './Effect';
 import { IItem, ItemState } from "../entities/IItem";

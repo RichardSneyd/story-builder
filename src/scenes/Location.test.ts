@@ -1,5 +1,5 @@
 import Location from './Location';
-import { ActorState, Gender } from '../entities/Actor';
+import { ActorState, Gender } from "../entities/IActor";
 import { IActor } from "../entities/IActor";
 import { IItem, ItemState } from "../entities/IItem";
 import { ISpecies } from "../entities/ISpecies";

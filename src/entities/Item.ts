@@ -30,4 +30,3 @@ class Item extends Entity implements IItem {
 }
 
 export default Item;
-export type {IItem, Item, ItemState}

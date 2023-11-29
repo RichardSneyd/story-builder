@@ -1,4 +1,4 @@
-import { ActorState } from "../entities/Actor";
+import { ActorState } from "../entities/IActor";
 import { IActor } from "../entities/IActor";
 import { IItem, ItemState } from "../entities/IItem";
 

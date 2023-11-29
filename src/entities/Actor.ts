@@ -1,5 +1,5 @@
 import Entity from "./Entity";
-import { IActor } from "./IActor";
+import { ActorState, Gender, IActor } from "./IActor";
 import { IPosition } from "./IPosition";
 import Item from "./Item";
 import Profile from "./Profile";
@@ -7,8 +7,7 @@ import { IProfile } from "./IProfile";
 import Species from "./Species";
 import { ISpecies } from "./ISpecies";
 
-type ActorState = "very sad" | "sad" | "happy" | "very happy" | "excited" | "scared" | "confused" | "bored" | "curious" | "tired" | "sorry" | "angry" | "lonely";
-type Gender = "male" | "female" | null;
+
 
 class Actor extends Entity implements IActor {
     private _species: ISpecies;
@@ -54,4 +53,3 @@ class Actor extends Entity implements IActor {
   }
 
   export default Actor;
-  export type {IActor, Actor, ActorState, Gender}

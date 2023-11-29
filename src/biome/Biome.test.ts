@@ -48,4 +48,36 @@ describe('Biome', () => {
     const expectedItems = new Set([...beach.associatedItems, ...kitchen.associatedItems]);
     expect(biome.items).toEqual(expectedItems);
   });
+
+  test('selectRandomActor returns an actor from a biome', () => {
+    const actor = biome.selectRandomActor();
+    expect(actor).toBeInstanceOf(Actor);
+  });
+
+  test('selectRandomActor does not return the same actor when run several 10 times', () => {
+    const actors = new Set();
+    for (let i = 0; i < 10; i++) {
+      const actor = biome.selectRandomActor();
+      actors.add(actor);
+      
+    }
+    expect(actors.size).toBeGreaterThan(1)
+  });
+
+  test('selectRandomItem returns an item from a biome', () => {
+    const item = biome.selectRandomItem();
+    expect(item).toBeInstanceOf(Item);
+  });
+
+  test('selectRandomItem does not return the same item when run several 10 times', () => {
+    const items = new Set();
+    for (let i = 0; i < 10; i++) {
+      const item = biome.selectRandomItem();
+      items.add(item);
+    }
+    expect(items.size).toBeGreaterThan(1);
+  })
+
+
+
 });

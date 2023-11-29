@@ -27,4 +27,8 @@ describe('Story', () => {
   test('protagonist getter returns the correct value', () => {
     expect(story.protagonist).toBe(mockProtagonist);
   });
+
+  
+
+
 });

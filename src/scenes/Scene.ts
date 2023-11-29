@@ -1,5 +1,5 @@
 import { IActor } from "../entities/IActor";
-import Item from "../entities/Item";
+import { IItem } from "../entities/IItem";
 import { IEvent } from "../events/Event";
 import { IScene } from "./IScene";
 import Location from "./Location";
@@ -8,9 +8,9 @@ class Scene implements IScene {
     private _events: IEvent[];
     private _actors: IActor[]; // order could represent temporal appearance in generated text??
     private _location: Location;
-    private _items: Item[];
+    private _items: IItem[];
 
-    constructor({events = [], actors = [], location, items = []}: {events?: IEvent[], actors?: IActor[], location: Location, items?: Item[]}) {
+    constructor({events = [], actors = [], location, items = []}: {events?: IEvent[], actors?: IActor[], location: Location, items?: IItem[]}) {
         this._events = events;
         this._actors = actors;
         this._items = items;
@@ -25,7 +25,7 @@ class Scene implements IScene {
         return this._actors;
     }
 
-    get items(): Item[] {
+    get items(): IItem[] {
         return this._items;
     }
 
