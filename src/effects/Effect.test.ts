@@ -1,7 +1,7 @@
-import { ActorEffect } from './Effect';
+import ActorEffect from "./ActorEffect";
 import { ActorState, Gender } from '../entities/IActor';
 import { IActor } from "../entities/IActor";
-import { ItemEffect } from './Effect';
+import ItemEffect from './ItemEffect';
 import { IItem, ItemState } from "../entities/IItem";
 import { ISpecies } from "../entities/ISpecies";
 import { IProfile, Trait } from "../entities/IProfile";
@@ -12,19 +12,26 @@ import { IPosition } from '../entities/IPosition';
 
 describe('ActorEffect', () => {
     const mockActor: IActor = {
-        get species(): ISpecies { return { base: 'human', plural: 'humans' }; },
-        get state(): ActorState[] { return ['happy', 'curious']; },
-        get gender(): Gender { return 'male'; },
-        get age(): number { return 30; },
-        get profile(): IProfile { return {
-            traits: new Set<Trait>(['confident', 'playful']),
-            likedItems: new Set<IItem>([]),
-            dislikedItems: new Set<IItem>([/* ... other IItem instances ... */]),
-            likedTraits: new Set<Trait>(['brave', 'smart']),
-            dislikedTraits: new Set<Trait>(['nasty', 'stupid'])
-          };},
-        get items(): IItem[] { return []; }
-      };
+      get species(): ISpecies { return { base: 'human', plural: 'humans' }; },
+      get state(): ActorState[] { return ['happy', 'curious']; },
+      get gender(): Gender { return 'male'; },
+      get age(): number { return 30; },
+      get profile(): IProfile {
+        return {
+          traits: new Set<Trait>(['confident', 'playful']),
+          likedItems: new Set<IItem>([]),
+          dislikedItems: new Set<IItem>([ /* ... other IItem instances ... */]),
+          likedTraits: new Set<Trait>(['brave', 'smart']),
+          dislikedTraits: new Set<Trait>(['nasty', 'stupid'])
+        };
+      },
+      get items(): IItem[] { return []; },
+      position: {
+        horizontal: "left",
+        vertical: "center"
+      },
+      name: ""
+    };
   const addStates = new Set<ActorState>(['happy', 'excited']);
   const removeStates = new Set<ActorState>(['sad', 'tired']);
   const actorEffect = new ActorEffect({ subject: mockActor, addState: Array.from(addStates), removeState: Array.from(removeStates) });

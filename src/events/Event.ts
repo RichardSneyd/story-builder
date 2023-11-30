@@ -1,18 +1,5 @@
-import { IComplexTransitiveAction } from "./IComplexTransitiveAction";
-import { ITransitiveAction } from "./ITransitiveAction";
-import { IAction } from "./IAction";
-import { IActorEffect, IEffect, IItemEffect } from "./Effect";
-
-type AnyAction = IAction | ITransitiveAction | IComplexTransitiveAction;
-type AnyEffect = IEffect | IActorEffect | IItemEffect;
-
-interface IEvent {
-    get prevEvent(): IEvent | null;
-    get nextEvent(): IEvent | null;
-    get action(): AnyAction;
-    get cause(): IEvent | null;
-    get effects(): AnyEffect[];
-}
+import { IEffect } from "../effects/IEffect";
+import { IEvent, AnyAction, AnyEffect } from "./IEvent";
 
 class Event implements IEvent {
     private _prevEvent: IEvent | null;
@@ -52,4 +39,3 @@ class Event implements IEvent {
 }
 
 export default Event;
-export type { IEvent, Event }

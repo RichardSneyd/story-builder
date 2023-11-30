@@ -2,7 +2,6 @@ import { IStory } from "./IStory";
 import Story from "./Story";
 import IBiome from "../biome/IBiome";
 import { IActor } from "../entities/IActor";
-import { IScene } from "../scenes/IScene";
 import SceneFactory from "../scenes/SceneFactory";
 
 export default class StoryFactory {

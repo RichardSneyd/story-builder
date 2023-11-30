@@ -7,21 +7,12 @@ import IntransitiveAction from "./IntransitiveAction";
 /**
  * @description  a transitive action (actual happening) involving a verb, a subject and an object
  */
-class TransitiveAction implements ITransitiveAction {
-    private _baseAction: IntransitiveAction;
+class TransitiveAction extends IntransitiveAction implements ITransitiveAction {
     private _object: SubjectObject;
 
-    constructor(baseAction: IntransitiveAction, object: SubjectObject) {
-        this._baseAction = baseAction;
+    constructor(verb: IVerb, subject: SubjectObject, object: SubjectObject) {
+        super(verb, subject)
         this._object = object;
-    }
-
-    get verb(): IVerb {
-        return this._baseAction.verb;
-    }
-
-    get subject(): SubjectObject {
-        return this._baseAction.subject;
     }
 
     get object(): SubjectObject {

@@ -1,14 +1,14 @@
 import { SubjectObject } from "./IAction";
 import { IComplexTransitiveAction } from "./IComplexTransitiveAction";
-import IntransitiveAction from "./IntransitiveAction";
+import { IVerb } from "./IVerb";
 import TransitiveAction from "./TransitiveAction";
 
 
 class ComplexTransitiveAction extends TransitiveAction implements IComplexTransitiveAction {
     private _prepositionalObject: SubjectObject;
 
-    constructor(baseAction: IntransitiveAction, object: SubjectObject, prepositionalObject: SubjectObject) {
-        super(baseAction, object);
+    constructor(verb: IVerb, subject: SubjectObject, object: SubjectObject, prepositionalObject: SubjectObject) {
+        super(verb, subject, object);
         this._prepositionalObject = prepositionalObject;
     }
 

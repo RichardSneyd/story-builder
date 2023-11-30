@@ -2,7 +2,7 @@ import Actor from "../entities/Actor";
 import { IItem } from "../entities/IItem";
 import Item from "../entities/Item";
 import Species from "../entities/Species";
-import { IEvent } from "../events/Event";
+import { IEvent } from "../events/IEvent";
 import SceneFactory from "./SceneFactory";
 import Location from "./Location";
 
@@ -26,6 +26,13 @@ describe('SceneFactory', () => {
         mockItem2 = {name: "item 2", position: {horizontal:'left', vertical:'top'}, category: {name: "toy", pre: "a"}, material: {hardness: "hard", wetness: "wet", name: "stone", temperature: "cold"}, state: ["clean"]};
         mockLocation = new Location({name: "Test Location", associatedActors: [mockActor1, mockActor2], associatedItems: [mockItem1, mockItem2]});
     })
+
+    test('new method creates a Scene with default actors, events, and items', () => {
+        const scene = SceneFactory.new({location: mockLocation});
+        expect(scene.actors).toEqual([]);
+        expect(scene.events).toEqual([]);
+        expect(scene.items).toEqual([]);
+    });
 
     test('new method creates a Scene with specified actors, events, and items', () => {
         const mockActors = [mockActor1, mockActor2];

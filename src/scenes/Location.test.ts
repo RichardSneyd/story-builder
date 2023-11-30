@@ -15,14 +15,21 @@ import { IPosition } from '../entities/IPosition';
     get state(): ActorState[] { return ['happy', 'curious']; },
     get gender(): Gender { return 'male'; },
     get age(): number { return 30; },
-    get profile(): IProfile { return {
+    get profile(): IProfile {
+      return {
         traits: new Set<Trait>(['confident', 'playful']),
         likedItems: new Set<IItem>([]),
-        dislikedItems: new Set<IItem>([/* ... other IItem instances ... */]),
+        dislikedItems: new Set<IItem>([ /* ... other IItem instances ... */]),
         likedTraits: new Set<Trait>(['brave', 'smart']),
         dislikedTraits: new Set<Trait>(['nasty', 'stupid'])
-      };},
-    get items(): IItem[] { return []; }
+      };
+    },
+    get items(): IItem[] { return []; },
+    position: {
+      horizontal: 'left',
+      vertical: 'center'
+    },
+    name: ''
   };
   
   // Mock implementation for IItem

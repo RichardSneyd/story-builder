@@ -1,5 +1,5 @@
 import Scene from './Scene';
-import { IEvent } from '../events/Event';
+import { IEvent } from "../events/IEvent";
 import { IActor } from "../entities/IActor";
 import Item from '../entities/Item';
 import Location from './Location';
@@ -34,4 +34,10 @@ describe('Scene', () => {
   test('location getter returns the correct value', () => {
     expect(scene.location).toBe(mockLocation);
   });
+
+  // test('adding an event to the scene adds the event to the events array', () => {
+  //   const mockEvent = new Event({action, cause: null, effects: []});
+  //   scene.addEvent(mockEvent);
+  //   expect(scene.events).toContain(mockEvent);
+  // });
 });

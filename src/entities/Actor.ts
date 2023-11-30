@@ -4,7 +4,6 @@ import { IPosition } from "./IPosition";
 import Item from "./Item";
 import Profile from "./Profile";
 import { IProfile } from "./IProfile";
-import Species from "./Species";
 import { ISpecies } from "./ISpecies";
 
 
@@ -17,7 +16,7 @@ class Actor extends Entity implements IActor {
     private _profile: IProfile;
     private _items: Item[];
 
-    constructor({name, position, state = ["happy"], gender = "male", age = 9, profile = new Profile({}), items = [], species = new Species("dog")}:{name: string, position: IPosition, state?: ActorState[], species: ISpecies, gender?: Gender, age?: number, profile?: IProfile, items?: Item[]}) {
+    constructor({name, position, state = ["happy"], gender = "male", age = 9, profile = new Profile({}), items = [], species}:{name: string, position: IPosition, state?: ActorState[], species: ISpecies, gender?: Gender, age?: number, profile?: IProfile, items?: Item[]}) {
         super(name, position);
         this._state = state;
         this._species = species;

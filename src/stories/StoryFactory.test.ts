@@ -7,6 +7,7 @@ import { IActor } from '../entities/IActor';
 import Actor from '../entities/Actor';
 import { ISpecies } from '../entities/ISpecies';
 import Species from '../entities/Species';
+import Scene from '../scenes/Scene';
 
 describe('StoryFactory', () => {
     let location1: Location;
@@ -32,5 +33,20 @@ describe('StoryFactory', () => {
     test('creates story with no scenes', () => {
         const story: IStory = StoryFactory.new({biome, protagonist: protagonist});
         expect(story.scenes.length).toEqual(0);
+    });
+
+    test('creates story with a single scene', () => {
+        const scene = new Scene({location: location1});
+        const story: IStory = StoryFactory.new({biome, protagonist: protagonist});
+        story.scenes.push(scene);
+        expect(story.scenes.length).toEqual(1);
+    });
+
+    test('creates story with multiple scenes', () => {
+        const scene1 = new Scene({location: location1});
+        const scene2 = new Scene({location: location2});
+        const story: IStory = StoryFactory.new({biome, protagonist: protagonist});
+        story.scenes.push(scene1, scene2);
+        expect(story.scenes.length).toEqual(2);
     });
 });

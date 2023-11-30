@@ -1,7 +1,7 @@
 import Event from './Event';
-import { IAction, SubjectObject } from "./IAction";
-import { IEffect } from './Effect';
-import { IVerb } from "./IVerb";
+import { IAction, SubjectObject } from "../actions/IAction";
+import { IEffect } from "../effects/IEffect";
+import { IVerb } from "../actions/IVerb";
 import Actor from '../entities/Actor';
 import Species from '../entities/Species';
 import Item from '../entities/Item';
