@@ -55,5 +55,4 @@ describe('Profile', () => {
     expect(profile.dislikedTraits).toEqual(mockDislikedTraits);
   });
 
-  // Additional tests for ensuring no duplicates can be added can also be included
 });

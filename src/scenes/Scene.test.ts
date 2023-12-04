@@ -3,13 +3,17 @@ import { IEvent } from "../events/IEvent";
 import { IActor } from "../entities/IActor";
 import Item from '../entities/Item';
 import Location from './Location';
+import Actor from '../entities/Actor';
+jest.mock('../entities/Item');
+jest.mock('./Location');
+jest.mock('../entities/Actor');
 
 describe('Scene', () => {
   // Mock implementations for IEvent, IActor, Item, and Location
   const mockEvents: IEvent[] = [];
-  const mockActors: IActor[] = [];
-  const mockItems: Item[] = [];
-  const mockLocation = new Location({name: 'Test Location', associatedActors: [], associatedItems: []});
+  const mockActors: IActor[] = [new (Actor as any)(), new (Actor as any)()];
+  const mockItems: Item[] = [new (Item as any)(), new (Item as any)()];
+  const mockLocation: Location = new (Location as any)();
   const scene = new Scene({ events: mockEvents, actors: mockActors, location: mockLocation, items: mockItems });
 
   test('constructor initializes properties correctly', () => {
