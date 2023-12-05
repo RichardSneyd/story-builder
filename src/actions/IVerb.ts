@@ -11,4 +11,10 @@ export interface IVerb {
     get pastTense(): string;
     get pastParticiple(): string;
     get futureTense(): string;
+    get firstPersonSingular(): string;
+    get firstPersonPlural(): string;
+    get secondPersonSingular(): string;
+    get secondPersonPlural(): string;
+    get thirdPersonSingular(): string;
+    get thirdPersonPlural(): string;
 }

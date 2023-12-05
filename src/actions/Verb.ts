@@ -1,3 +1,4 @@
+import Conjugations from "./Conjugations";
 import { IVerb, Person, NumberOf } from "./IVerb";
 
 class Verb implements IVerb {
@@ -5,12 +6,15 @@ class Verb implements IVerb {
     private _presentParticiple: string;
     private _pastTense: string;
     private _pastParticiple: string;
+    private _conjugations: Conjugations | null;
+    
 
-    constructor(base: string, presentParticiple: string, pastTense: string, pastParticiple: string) {
+    constructor(base: string, presentParticiple: string, pastTense: string, pastParticiple: string, conjugations: Conjugations | null = null) {
         this._base = base;
         this._presentParticiple = presentParticiple;
         this._pastTense = pastTense;
         this._pastParticiple = pastParticiple;
+        this._conjugations = conjugations;
     }
 
     get base(): string {
@@ -35,6 +39,30 @@ class Verb implements IVerb {
 
     get futureTense(): string {
         return `will ${this._base}`
+    }
+
+    get firstPersonSingular(): string {
+        return this._conjugations?.firstPersonSingular ? this._conjugations.firstPersonSingular :this.conjugatePresent('first', 'singular');
+    }
+
+    get firstPersonPlural(): string {
+        return this._conjugations?.firstPersonPlural ? this._conjugations.firstPersonPlural :this.conjugatePresent('first', 'plural');
+    }
+
+    get secondPersonSingular(): string {
+        return this._conjugations?.secondPersonSingular ? this._conjugations.secondPersonSingular :this.conjugatePresent('second', 'singular');
+    }
+
+    get secondPersonPlural(): string {
+        return this._conjugations?.secondPersonPlural ? this._conjugations.secondPersonPlural :this.conjugatePresent('second', 'plural');
+    }
+
+    get thirdPersonSingular(): string {
+        return this._conjugations?.thirdPersonSingular ? this._conjugations.thirdPersonSingular :this.conjugatePresent('third', 'singular');
+    }
+
+    get thirdPersonPlural(): string {
+        return this._conjugations?.thirdPersonPlural ? this._conjugations.thirdPersonPlural :this.conjugatePresent('third', 'plural');
     }
 
     public conjugatePresent(person: Person, number: NumberOf): string {
