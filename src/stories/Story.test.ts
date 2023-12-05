@@ -1,17 +1,31 @@
 import Story from './Story';
 import Actor from '../entities/Actor'; // Assuming Actor is a concrete class
 import Scene from '../scenes/Scene'; // Assuming Scene is a concrete class
-import Species from '../entities/Species';
-import Location from '../scenes/Location';
+import { IScene } from '../scenes/IScene';
+import { IActor } from '../entities/IActor';
+import { IStory } from './IStory';
+jest.mock('../entities/Actor');
+jest.mock('../scenes/Scene');
 
 describe('Story', () => {
-  const mockProtagonist = new Actor({name: "Person 1", position: {horizontal:'center', vertical:'bottom'}, species: new Species("human")});
-  const mockScene1 = new Scene({location: new Location({name: "The Moon"})});
-  const mockScene2 = new Scene({location: new Location({name: "Mars"})});
-  const scenes = [mockScene1, mockScene2];
+  let mockProtagonist: IActor;
+  let mockScene1: IScene;
+  let mockScene2: IScene;
+  let scenes: IScene[];
+  let story: IStory;
 
-  const story = new Story({ protagonist: mockProtagonist, scenes });
+  beforeEach(() => {
+    mockProtagonist  = new (Actor as any)();
+    mockScene1 = new (Scene as any)();
+    mockScene2 = new (Scene as any)();
+    scenes = [mockScene1, mockScene2];
+    story = new Story({ protagonist: mockProtagonist, scenes: scenes });
+  })
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+  
   test('constructor initializes protagonist correctly', () => {
     expect(story.protagonist).toBe(mockProtagonist);
   });

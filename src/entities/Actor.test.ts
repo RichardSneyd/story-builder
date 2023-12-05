@@ -2,57 +2,49 @@ import Actor from './Actor';
 import Profile from './Profile';
 import Species from './Species';
 import Item from './Item';
-import { IItem, ItemState } from "./IItem";
-import ItemCategory from './ItemCategory';
-import { IMaterial } from "./IMaterial";
+import { IItem } from "./IItem";
 
-
-// Mock data for Item constructor
-const mockCategory: ItemCategory = { name: 'Toy', pre: 'a' };
-const mockMaterial: IMaterial = { name: 'Plastic', hardness: 'hard', wetness: 'dry', temperature: 'cold' };
-const mockState: ItemState[] = ['clean'];
-
-// Creating mock items with the above data
-const mockItem1 = new Item({
-  name: 'Toy Car',
-  position: { horizontal: 'center', vertical: 'top' },
-  category: mockCategory,
-  material: mockMaterial,
-  state: mockState,
-});
-
-const mockItem2 = new Item({
-  name: 'Doll',
-  position: { horizontal: 'left', vertical: 'bottom' },
-  category: mockCategory,
-  material: mockMaterial,
-  state: mockState,
-});
+jest.mock('./Material');
+jest.mock('./Item');
+jest.mock('./Profile');
+jest.mock('./Species');
 
 describe('Actor', () => {
-  const mockProfile = new Profile({});
-  const mockSpecies = new Species('dog');
-  const mockItems: IItem[] = [mockItem1, mockItem2];
-  const initialProperties: any = {
-    name: 'TestActor',
-    position: { x: 0, y: 0 },
-    state: ['happy', 'curious'],
-    species: mockSpecies,
-    gender: 'female',
-    age: 5,
-    profile: mockProfile,
-    items: mockItems,
-  };
 
+  let mockItem1: IItem;
+  let mockItem2: IItem;
+  let mockProfile: Profile;
+  let mockSpecies: Species;
+  let mockItems: IItem[];
+  let initialProperties: any;
   let actor: Actor;
 
   beforeEach(() => {
+    mockItem1 = new (Item as any)();
+    mockItem2 = new (Item as any)();
+    mockProfile = new (Profile as any)();
+    mockSpecies = new (Species as any)();
+    mockItems = [mockItem1, mockItem2];
+    initialProperties = {
+      name: 'TestActor',
+      position: { x: 0, y: 0 },
+      state: ['happy', 'curious'],
+      species: mockSpecies,
+      gender: 'female',
+      age: 5,
+      profile: mockProfile,
+      items: mockItems,
+    };
     actor = new Actor(initialProperties);
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('constructor initializes properties correctly', () => {
-    expect(actor.name).toBe('TestActor'); // Assuming Entity has a name property
-    expect(actor.position).toEqual({ x: 0, y: 0 }); // Assuming Entity has a position property
+    expect(actor.name).toBe('TestActor'); 
+    expect(actor.position).toEqual({ x: 0, y: 0 }); 
     expect(actor.state).toEqual(['happy', 'curious']);
     expect(actor.species).toBe(mockSpecies);
     expect(actor.gender).toBe('female');

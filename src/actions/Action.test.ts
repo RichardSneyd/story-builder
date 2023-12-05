@@ -1,66 +1,50 @@
 import ComplexTransitiveAction from "./ComplexTransitiveAction";
-import { ActorState, Gender } from '../entities/IActor';
 import { IActor } from "../entities/IActor";
-import { IItem, ItemState } from "../entities/IItem";
+import { IItem } from "../entities/IItem";
 import { IVerb } from "./IVerb";
-import { ISpecies } from "../entities/ISpecies";
-import { IProfile, Trait } from "../entities/IProfile";
-import ItemCategory from '../entities/ItemCategory';
-import { IMaterial } from "../entities/IMaterial";
-import { IPosition } from '../entities/IPosition';
 import IntransitiveAction from "./IntransitiveAction";
 import TransitiveAction from "./TransitiveAction";
+import Verb from "./Verb";
+import Actor from "../entities/Actor";
+import Item from "../entities/Item";
+jest.mock('./Verb', () => {
+  return {
+    __esmodule: true,
+    default: jest.fn().mockImplementation(() => ({
+      infinitive: 'to go',
+      presentParticiple: 'going',
+      pastTense: 'went',
+      pastParticiple: 'gone',
+      conjugatePresent: jest.fn((person: string, number: string) => {
+        return `${person} ${number}`;
+      }),
+    }))
+  }
+});
+jest.mock('../entities/Actor');
+jest.mock('../entities/Item');
 
 
-// Mock implementation for IVerb
-const mockVerb: IVerb = {
-    get base() { return 'run'; },
-    get infinitive() { return 'to run'; },
-    get presentParticiple() { return 'running'; },
-    conjugatePresent: () => 'runs', // Simplified implementation
-    get pastTense() { return 'ran'; },
-    get pastParticiple() { return 'run'; },
-    get futureTense() { return 'will run'; }
-  };
-  
-  // Mock implementation for IActor
-  const mockActor: IActor = {
-    get species(): ISpecies { return { base: 'human', plural: 'humans' }; },
-    get state(): ActorState[] { return ['happy', 'curious']; },
-    get gender(): Gender { return 'male'; },
-    get age(): number { return 30; },
-    get profile(): IProfile {
-      return {
-        traits: new Set<Trait>(['confident', 'playful']),
-        likedItems: new Set<IItem>([]),
-        dislikedItems: new Set<IItem>([ /* ... other IItem instances ... */]),
-        likedTraits: new Set<Trait>(['brave', 'smart']),
-        dislikedTraits: new Set<Trait>(['nasty', 'stupid'])
-      };
-    },
-    get items(): IItem[] { return []; },
-    position: {
-      horizontal: "left",
-      vertical: "center"
-    },
-    name: "mock actor 1"
-  };
-  
-  // Mock implementation for IItem
-  const mockItem: IItem = {
-    get category(): ItemCategory { return { name: 'Tool', pre: 'a' }; },
-    get material(): IMaterial { return { name: 'Iron', hardness: 'hard', wetness: 'dry', temperature: 'cold' }; },
-    get state(): ItemState[] { return ['clean']; },
-    get name(): string { return 'Hammer'; },
-    set name(newName: string) { newName },
-    get position(): IPosition { return { horizontal: 'left', vertical: 'top' }; }
-  };
 describe('Action Classes', () => {
+  let mockVerb: IVerb;
+  let mockActor: IActor;
+  let mockItem: IItem;
+  
+  beforeEach(() => {
+    mockVerb = new (Verb as any)();
+    mockActor = new (Actor as any)();
+    mockItem = new (Item as any)();
+  });
+  
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   // IntransitiveAction Tests
   describe('IntransitiveAction', () => {
-    const intransitiveAction = new IntransitiveAction(mockVerb, mockActor);
-
+    
     test('constructor initializes verb and subject correctly', () => {
+      const intransitiveAction = new IntransitiveAction(mockVerb, mockActor);
       expect(intransitiveAction.verb).toBe(mockVerb);
       expect(intransitiveAction.subject).toBe(mockActor);
     });
@@ -68,9 +52,9 @@ describe('Action Classes', () => {
 
   // TransitiveAction Tests
   describe('TransitiveAction', () => {
-    const transitiveAction = new TransitiveAction(mockVerb, mockActor, mockItem);
-
+    
     test('constructor initializes baseAction and object correctly', () => {
+      const transitiveAction = new TransitiveAction(mockVerb, mockActor, mockItem);
       expect(transitiveAction.verb).toBe(mockVerb);
       expect(transitiveAction.subject).toBe(mockActor);
       expect(transitiveAction.object).toBe(mockItem);
@@ -79,9 +63,9 @@ describe('Action Classes', () => {
 
   // ComplexTransitiveAction Tests
   describe('ComplexTransitiveAction', () => {
-    const complexTransitiveAction = new ComplexTransitiveAction(mockVerb, mockActor, mockItem, mockActor);
-
+    
     test('constructor initializes baseAction, object, and prepositionalObject correctly', () => {
+      const complexTransitiveAction = new ComplexTransitiveAction(mockVerb, mockActor, mockItem, mockActor);
       expect(complexTransitiveAction.verb).toBe(mockVerb);
       expect(complexTransitiveAction.subject).toBe(mockActor);
       expect(complexTransitiveAction.object).toBe(mockItem);

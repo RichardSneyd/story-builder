@@ -1,40 +1,28 @@
 import ActorEffect from "./ActorEffect";
-import { ActorState, Gender } from '../entities/IActor';
-import { IActor } from "../entities/IActor";
+import { ActorState, IActor } from "../entities/IActor";
 import ItemEffect from './ItemEffect';
 import { IItem, ItemState } from "../entities/IItem";
-import { ISpecies } from "../entities/ISpecies";
-import { IProfile, Trait } from "../entities/IProfile";
-import ItemCategory from '../entities/ItemCategory';
-import { IMaterial } from "../entities/IMaterial";
-import { IPosition } from '../entities/IPosition';
-
+import Actor from "../entities/Actor";
+import Item from "../entities/Item";
+jest.mock('../entities/Actor');
+jest.mock('../entities/Item');
 
 describe('ActorEffect', () => {
-    const mockActor: IActor = {
-      get species(): ISpecies { return { base: 'human', plural: 'humans' }; },
-      get state(): ActorState[] { return ['happy', 'curious']; },
-      get gender(): Gender { return 'male'; },
-      get age(): number { return 30; },
-      get profile(): IProfile {
-        return {
-          traits: new Set<Trait>(['confident', 'playful']),
-          likedItems: new Set<IItem>([]),
-          dislikedItems: new Set<IItem>([ /* ... other IItem instances ... */]),
-          likedTraits: new Set<Trait>(['brave', 'smart']),
-          dislikedTraits: new Set<Trait>(['nasty', 'stupid'])
-        };
-      },
-      get items(): IItem[] { return []; },
-      position: {
-        horizontal: "left",
-        vertical: "center"
-      },
-      name: ""
-    };
-  const addStates = new Set<ActorState>(['happy', 'excited']);
-  const removeStates = new Set<ActorState>(['sad', 'tired']);
-  const actorEffect = new ActorEffect({ subject: mockActor, addState: Array.from(addStates), removeState: Array.from(removeStates) });
+  let mockActor: IActor;
+  let addStates: Set<ActorState>; 
+  let removeStates: Set<ActorState>;
+  let actorEffect: ActorEffect;
+
+  beforeEach(() => {
+    mockActor = new (Actor as any)();
+    addStates = new Set<ActorState>(['happy', 'excited']);
+    removeStates = new Set<ActorState>(['sad', 'tired']);
+    actorEffect = new ActorEffect({ subject: mockActor, addState: Array.from(addStates), removeState: Array.from(removeStates) });
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
   test('constructor initializes properties correctly for ActorEffect', () => {
     expect(actorEffect.subject).toBe(mockActor);
@@ -44,21 +32,25 @@ describe('ActorEffect', () => {
 });
 
 describe('ItemEffect', () => {
-    const mockItem: IItem = {
-        get category(): ItemCategory { return { name: 'Tool', pre: 'a' }; },
-        get material(): IMaterial { return { name: 'Iron', hardness: 'hard', wetness: 'dry', temperature: 'cold' }; },
-        get state(): ItemState[] { return ['clean']; },
-        get name(): string { return 'Hammer'; },
-        set name(newName: string) { newName },
-        get position(): IPosition { return { horizontal: 'left', vertical: 'top' }; }
-      };
-    const addStates = new Set<ItemState>(['clean', 'fixed']);
-    const removeStates = new Set<ItemState>(['broken']);
-    const itemEffect = new ItemEffect({ subject: mockItem, addState: Array.from(addStates), removeState: Array.from(removeStates) });
-  
-    test('constructor initializes properties correctly for ItemEffect', () => {
-      expect(itemEffect.subject).toBe(mockItem);
-      expect(itemEffect.addState).toEqual(addStates);
-      expect(itemEffect.removeState).toEqual(removeStates);
-    });
+  let mockItem: IItem;
+  let addStates: Set<ItemState>;
+  let removeStates: Set<ItemState>;
+  let itemEffect: ItemEffect;
+
+  beforeEach(() => {
+    mockItem = new (Item as any)();
+    addStates = new Set<ItemState>(['clean', 'fixed']);
+    removeStates = new Set<ItemState>(['broken']);
+    itemEffect = new ItemEffect({ subject: mockItem, addState: Array.from(addStates), removeState: Array.from(removeStates) });
   });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test('constructor initializes properties correctly for ItemEffect', () => {
+    expect(itemEffect.subject).toBe(mockItem);
+    expect(itemEffect.addState).toEqual(addStates);
+    expect(itemEffect.removeState).toEqual(removeStates);
+  });
+});

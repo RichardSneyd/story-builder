@@ -19,6 +19,10 @@ describe('Location', () => {
   const locationName = 'Test Location';
   const location = new Location({ name: locationName, associatedActors: mockActors, associatedItems: mockItems });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('constructor initializes properties correctly', () => {
     expect(location.name).toBe(locationName);
     expect(location.associatedActors).toEqual(new Set(mockActors));

@@ -2,50 +2,40 @@ import Biome from './Biome';
 import Location from '../scenes/Location';
 import Actor from '../entities/Actor'; // Assuming Actor is a concrete class
 import Item from '../entities/Item'; // Assuming Item is a concrete class
-import Species from '../entities/Species';
-import Position from '../entities/Position';
-import ItemCategory from '../entities/ItemCategory';
-import Material from '../entities/Material';
-import { IMaterial } from "../entities/IMaterial";
+jest.mock('../entities/Actor');
+jest.mock('../entities/Item');
 
 describe('Biome', () => {
-  // Create mock Locations with Actors and Items
-  const human = new Species("human");
-  const dog = new Species("dog");
 
-  const bottomLeft = new Position("left", "bottom");
-  const bottomRight = new Position("right", "bottom");
+  const mockActor1 = new (Actor as any)();
+  const mockActor2 = new (Actor as any)();
+  const mockActor3 = new (Actor as any)();
+  const mockActor4 = new (Actor as any)();
 
-  const person1 = new Actor({name: "Person 1", species: human, position: bottomLeft});
-  const person2 = new Actor({name: "Person 2", species: human, position: bottomRight});
-  const dog1 = new Actor({name: "Dog 1", species: dog, position: bottomRight});
-  const dog2 = new Actor({name: "Dog 2", species: dog, position: bottomRight});
+  const mockItem1 = new (Item as any)();
+  const mockItem2 = new (Item as any)()
 
-  const toy: ItemCategory = {name: "toy", pre: "a"}; 
-  const appliance: ItemCategory = {name: "appliance", pre: "an"}
+  const mockLocation1 = new Location({name: 'mock location 1', associatedActors: [mockActor1, mockActor2], associatedItems: [mockItem1]});
+  const mockLocation2 = new Location({name: 'mock location 2', associatedActors: [mockActor3, mockActor4], associatedItems: [mockItem2]});
+  const locations = [mockLocation1, mockLocation2];
 
-  const plastic: IMaterial = new Material({name: "plastic", hardness: "soft"})
-
-  const ball = new Item({category: toy, name: "ball", material: plastic});
-  const cooker = new Item({name: "cooker", category: appliance, material: plastic})
-
-  const beach = new Location({name: 'the beach', associatedActors: [person1, person2], associatedItems: [ball]});
-  const kitchen = new Location({name: 'the kitchen', associatedActors: [dog1, dog2], associatedItems: [cooker]});
-  const locations = [beach, kitchen];
-  
   const biome = new Biome({ locations });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
   test('locations getter returns the correct values', () => {
     expect(biome.locations).toEqual(new Set(locations));
   });
 
   test('actors getter returns a merged set of actors from all locations', () => {
-    const expectedActors = new Set([...beach.associatedActors, ...kitchen.associatedActors]);
+    const expectedActors = new Set([...mockLocation1.associatedActors, ...mockLocation2.associatedActors]);
     expect(biome.actors).toEqual(expectedActors);
   });
 
   test('items getter returns a merged set of items from all locations', () => {
-    const expectedItems = new Set([...beach.associatedItems, ...kitchen.associatedItems]);
+    const expectedItems = new Set([...mockLocation1.associatedItems, ...mockLocation2.associatedItems]);
     expect(biome.items).toEqual(expectedItems);
   });
 
@@ -59,7 +49,7 @@ describe('Biome', () => {
     for (let i = 0; i < 10; i++) {
       const actor = biome.selectRandomActor();
       actors.add(actor);
-      
+
     }
     expect(actors.size).toBeGreaterThan(1)
   });

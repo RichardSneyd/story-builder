@@ -14,7 +14,7 @@ describe('Event', () => {
     let prevMockEvent: IEvent;
     let nextMockEvent: IEvent;
     let causeMockEvent: IEvent;
-    let event: Event;
+    let event: IEvent;
 
     beforeEach(() => {
         mockAction = new (IntransitiveAction as any)();
@@ -24,7 +24,11 @@ describe('Event', () => {
         nextMockEvent = new Event({ action: mockAction, effects: [mockEffect] });
         causeMockEvent = new Event({ action: mockAction, effects: [mockEffect] });
         event = new Event({ prevEvent: prevMockEvent, nextEvent: nextMockEvent, action: mockAction, cause: causeMockEvent, effects: [mockEffect] });
-    })
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 
     test('constructor initializes properties correctly', () => {
         expect(event.prevEvent).toBe(prevMockEvent);

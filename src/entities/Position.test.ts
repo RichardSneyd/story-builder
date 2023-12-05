@@ -11,6 +11,10 @@ describe('Position', () => {
     position = new Position(initialHorizontal, initialVertical);
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('constructor initializes horizontal and vertical positions correctly', () => {
     expect(position.horizontal).toBe(initialHorizontal);
     expect(position.vertical).toBe(initialVertical);

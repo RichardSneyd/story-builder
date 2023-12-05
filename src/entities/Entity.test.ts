@@ -3,16 +3,21 @@ import IEntity from './IEntity';
 import { IPosition } from './IPosition';
 
 describe('Entity', () => {
-  const initialName = 'TestEntity';
-  const initialPosition: IPosition = {
-    horizontal: 'center',
-    vertical: 'top',
-  };
-
+  let initialName: string;
+  let initialPosition: IPosition;
   let entity: IEntity;
 
   beforeEach(() => {
+    initialName = 'TestEntity';
+    initialPosition = {
+      horizontal: 'center',
+      vertical: 'top',
+    };
     entity = new Entity(initialName, initialPosition);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   test('constructor initializes name and position correctly', () => {

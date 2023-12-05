@@ -1,30 +1,49 @@
-import { IAction, SubjectObject } from "../actions/IAction";
-import { IVerb } from "../actions/IVerb";
+import { IAction } from "../actions/IAction";
 import IntransitiveAction from "../actions/IntransitiveAction";
-import Verb from "../actions/Verb";
-import Actor from "../entities/Actor";
-import { ISpecies } from "../entities/ISpecies";
-import Species from "../entities/Species";
 import EventFactory from "./EventFactory";
 import Event from "./Event";
+import { IEvent } from "./IEvent";
+import ActorEffect from "../effects/ActorEffect";
+jest.mock('../actions/IntransitiveAction');
+jest.mock('../effects/ActorEffect');
+
 
 describe('EventFactory', () => {
-    let mockVerb: IVerb;
-    let mockSpecies: ISpecies;
-    let mockSubject: SubjectObject;
     let mockAction: IAction;
+    let event: IEvent;
+
 
     beforeEach(() => {
-        mockVerb =  new Verb('walk', 'walking', 'walked', 'walked');
-        mockSpecies = new Species('mockSpecies');
-        mockSubject = new Actor({ name: 'mockActor 1', position: {horizontal: 'center', vertical: 'top'}, species: mockSpecies});
-        mockAction = new IntransitiveAction(mockVerb, mockSubject);
-    })
+        mockAction = new (IntransitiveAction as any)();
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 
     test('should create an event', () => {
-        const event = EventFactory.new({ action: mockAction });
+        event = EventFactory.new({ action: mockAction });
         expect(event).toBeInstanceOf(Event);
         expect(event.action).toBe(mockAction);
         expect(event.cause).toBeNull();
+        expect(event.effects).toEqual([]);
+    });
+
+    test('should create an event with cause', () => {
+        const cause = new Event({ action: mockAction });
+        event = EventFactory.new({ action: mockAction, cause });
+        expect(event).toBeInstanceOf(Event);
+        expect(event.action).toBe(mockAction);
+        expect(event.cause).toBe(cause);
+        expect(event.effects).toEqual([]);
+    });
+
+    test('should create an event with effects', () => {
+        const effects = [new (ActorEffect as any)()];
+        event = EventFactory.new({ action: mockAction, effects });
+        expect(event).toBeInstanceOf(Event);
+        expect(event.action).toBe(mockAction);
+        expect(event.cause).toBeNull();
+        expect(event.effects).toEqual(effects);
     })
 })

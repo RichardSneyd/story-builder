@@ -8,6 +8,10 @@ describe('BiomeFactory', () => {
   const location3 = new Location({name: "the backyard"});
   const location4 = new Location({name: "the garage"});
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('new method creates a Biome with specified locations', () => {
     const mockLocations = [location1, location2];
     const biome = BiomeFactory.new({ locations: mockLocations });

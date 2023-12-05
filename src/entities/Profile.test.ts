@@ -1,32 +1,11 @@
 import Profile from './Profile';
 import { Trait } from "./IProfile";
 import Item from './Item';
-import { IItem, ItemState } from "./IItem";
-import { IMaterial } from "./IMaterial";
-import ItemCategory from './ItemCategory';
+import { IItem } from "./IItem";
+jest.mock('./Item');
 
-
-// Mock data for Item constructor
-const mockCategory: ItemCategory = { name: 'Toy', pre: 'a' };
-const mockMaterial: IMaterial = { name: 'Plastic', hardness: 'hard', wetness: 'dry', temperature: 'cold' };
-const mockState: ItemState[] = ['clean'];
-
-// Creating mock items with the above data
-const mockItem1 = new Item({
-  name: 'Toy Car',
-  position: { horizontal: 'center', vertical: 'top' },
-  category: mockCategory,
-  material: mockMaterial,
-  state: mockState,
-});
-
-const mockItem2 = new Item({
-  name: 'Doll',
-  position: { horizontal: 'left', vertical: 'bottom' },
-  category: mockCategory,
-  material: mockMaterial,
-  state: mockState,
-});
+const mockItem1 = new (Item as any)();
+const mockItem2 = new (Item as any)();
 
 describe('Profile', () => {
   const mockTraits = new Set<Trait>(['confident', 'smart']);
@@ -45,6 +24,10 @@ describe('Profile', () => {
       likedTraits: Array.from(mockLikedTraits),
       dislikedTraits: Array.from(mockDislikedTraits),
     });
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   test('constructor initializes properties correctly with Set', () => {
