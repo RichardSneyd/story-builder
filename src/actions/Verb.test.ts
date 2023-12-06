@@ -1,16 +1,26 @@
 import Verb from './Verb';
-import { NumberOf, Person } from "./IVerb";
+import { IVerb, NumberOf, Person } from "./IVerb";
 
 describe('Verb', () => {
-  const walk = new Verb('walk', 'walking', 'walked', 'walked');
-  const be = new Verb('be', 'being', 'was', 'been', {
-    firstPersonSingular: 'am',
-    firstPersonPlural: 'are',
-    secondPersonSingular: 'are',
-    secondPersonPlural: 'are',
-    thirdPersonSingular: 'is',
-    thirdPersonPlural: 'are',
-  });
+  let walk: IVerb;
+  let be :IVerb;
+  const setState = () => {
+    walk = new Verb('walk', 'walking', 'walked', 'walked');
+    be = new Verb('be', 'being', 'was', 'been', {
+      firstPerson_singular: 'am',
+      firstPerson_plural: 'are',
+      secondPerson_singular: 'are',
+      secondPerson_plural: 'are',
+      thirdPerson_singular: 'is',
+      thirdPerson_plural: 'are',
+    });
+  }
+
+  setState();
+ 
+  beforeEach(() => {
+    setState();
+  })
 
   test('constructor initializes properties correctly', () => {
     expect(walk.base).toBe('walk');
@@ -28,12 +38,12 @@ describe('Verb', () => {
   });
 
   test.each<[Person, NumberOf, string]>([
-    ['first', 'singular', walk.base],
-    ['second', 'singular', walk.base],
-    ['third', 'singular', `${walk.base}s`],
-    ['first', 'plural', walk.base],
-    ['second', 'plural', walk.base],
-    ['third', 'plural', walk.base],
+    ['first', 'singular', 'walk'],
+    ['second', 'singular', 'walk'],
+    ['third', 'singular', 'walks'],
+    ['first', 'plural', 'walk'],
+    ['second', 'plural', 'walk'],
+    ['third', 'plural', 'walk'],
   ])('conjugatePresent for person %s and number %s returns %s', (person, number, expected) => {
     expect(walk.conjugatePresent(person, number)).toBe(expected);
   });
@@ -51,8 +61,8 @@ describe('Verb', () => {
   // Additional tests for special cases in conjugatePresent method
   test('conjugatePresent handles verbs ending in "y"', () => {
     const flyVerb = new Verb('fly', 'flying', 'flew', 'flown');
-    expect(flyVerb.conjugatePresent('third', 'singular')).toBe('flies');
-    expect(flyVerb.conjugatePresent('third', 'plural')).toBe('fly');
+    expect(flyVerb.thirdPersonSingular).toBe('flies');
+    expect(flyVerb.thirdPersonPlural).toBe('fly');
   });
 
   test('conjugatePresent handles verbs ending in "o", "s", "x", "z", "ch", "sh"', () => {

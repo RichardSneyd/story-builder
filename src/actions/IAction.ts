@@ -5,5 +5,5 @@ import { IVerb } from "./IVerb";
 export type SubjectObject = IActor | IItem | null;
 export interface IAction {
     get verb(): IVerb;
-    get subject(): SubjectObject;
+    get subject(): SubjectObject | SubjectObject[];
 }
